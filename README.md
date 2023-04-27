@@ -26,7 +26,93 @@ ByteBrew Unreal Engine SDK
 
 ## How to Use
 
-You should now be able to access the ByteBrew category when creating blueprints.
+### Additional steps for C++ calls
+
+1. Open your projecct's Build.cs file located at project_root/Source/Project_Name/Project_Name.Build.cs.
+2. Add "ByteBrewSDK" to PublicDependencyModuleNames. It should look something like this:
+
+```PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "ByteBrewSDK" });```
+
+3. Add ```#include "ByteBrewSDKInterface.h"``` to the top of your C++ header file.
+4. Call functions from the .cpp file:
+
+```
+// Called when the game starts
+void UByteBrewSDKCallsTest::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// ...
+
+	FString engineVersion = TEXT("unreal");
+	FString buildVersion = TEXT("1.0");
+
+#if PLATFORM_IOS
+
+	FString gameKey = TEXT("ios_game_key");
+	FString secretKey = TEXT("ios_secret_key");
+
+	UByteBrewSDKInterface::InitializeByteBrew(gameKey, secretKey, engineVersion, buildVersion);
+
+#elif PLATFORM_ANDROID
+
+	FString gameKey = TEXT("android_game_key");
+	FString secretKey = TEXT("android_secret_key");
+
+	UByteBrewSDKInterface::InitializeByteBrew(gameKey, secretKey, engineVersion, buildVersion);
+
+#endif
+
+	bool bIsInitialized = UByteBrewSDKInterface::IsByteBrewInitialized();
+	UByteBrewSDKInterface::StartPushNotifications();
+
+	FString eventName = TEXT("test_event");
+	UByteBrewSDKInterface::NewCustomEvent(eventName);
+
+	UByteBrewSDKInterface::NewCustomEventWithStringValue(eventName, TEXT("string_value"));
+	UByteBrewSDKInterface::NewCustomEventWithFloatValue(eventName, 123.45f);
+
+	UByteBrewSDKInterface::SetCustomData(TEXT("key"), TEXT("value"));
+	UByteBrewSDKInterface::SetCustomDataFloat(TEXT("key_float"), 123.45f);
+	UByteBrewSDKInterface::SetCustomDataInt(TEXT("key_int"), 42);
+	UByteBrewSDKInterface::SetCustomDataBool(TEXT("key_bool"), true);
+
+	UByteBrewSDKInterface::NewProgressionEvent(EByteBrewProgressionType::Started, TEXT("environment"), TEXT("stage"));
+	UByteBrewSDKInterface::NewProgressionEventWithStringValue(EByteBrewProgressionType::Completed, TEXT("environment"), TEXT("stage"), TEXT("string_value"));
+	UByteBrewSDKInterface::NewProgressionEventWithFloatValue(EByteBrewProgressionType::Failed, TEXT("environment"), TEXT("stage"), 123.45f);
+
+	UByteBrewSDKInterface::TrackAdEvent(EByteBrewAdType::Interstitial, TEXT("ad_location"));
+	UByteBrewSDKInterface::TrackAdEventWithAdID(EByteBrewAdType::Reward, TEXT("ad_location"), TEXT("ad_id"));
+	UByteBrewSDKInterface::TrackAdEventWithAdIDAndProvider(EByteBrewAdType::Banner, TEXT("ad_location"), TEXT("ad_id"), TEXT("ad_provider"));
+
+	UByteBrewSDKInterface::TrackInAppPurchaseEvent(TEXT("store"), TEXT("currency"), 19.99f, TEXT("item_id"), TEXT("category"));
+	
+#if PLATFORM_IOS
+
+	UByteBrewSDKInterface::TrackAppleInAppPurchaseEvent(TEXT("store"), TEXT("currency"), 19.99f, TEXT("item_id"), TEXT("category"), TEXT("receipt"));
+	UByteBrewSDKInterface::ValidateAppleInAppPurchaseEvent(TEXT("store"), TEXT("currency"), 19.99f, TEXT("item_id"), TEXT("category"), TEXT("receipt"));
+
+#elif PLATFORM_ANDROID
+
+	UByteBrewSDKInterface::TrackGoogleInAppPurchaseEvent(TEXT("store"), TEXT("currency"), 19.99f, TEXT("item_id"), TEXT("category"), TEXT("receipt"), TEXT("signature"));
+	UByteBrewSDKInterface::ValidateGoogleInAppPurchaseEvent(TEXT("store"), TEXT("currency"), 19.99f, TEXT("item_id"), TEXT("category"), TEXT("receipt"), TEXT("signature"));
+
+#endif
+
+	bool bHasRemoteConfigsBeenSet = UByteBrewSDKInterface::HasRemoteConfigsBeenSet();
+	FString remoteConfigValue = UByteBrewSDKInterface::RetrieveRemoteConfigValue(TEXT("key"), TEXT("default_value"));
+
+	UByteBrewSDKInterface::RestartTracking();
+	UByteBrewSDKInterface::StopTracking();
+
+	FString userID = UByteBrewSDKInterface::GetUserID();
+	
+	UByteBrewSDKInterface::LoadRemoteConfigs();
+
+}
+```
+
+You should also now be able to access the ByteBrew category when creating blueprints.
 
 You can Initialize ByteBrew like so:
 

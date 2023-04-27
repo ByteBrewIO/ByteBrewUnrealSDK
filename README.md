@@ -10,16 +10,16 @@ ByteBrew Unreal Engine SDK
 
 <details>
   <summary>Extra steps for enabling push notifications on iOS</summary>
-### If your Unreal Engine is built from the Github source:
-1. Open project settings (Edit > Project Settings)
-2. Under Platforms > iOS, under the "Online" section, enable "Enable Remote Notifications Support".
-### If your Unreal Engine is NOT built from the Github source:
-1. Close the Unreal editor if it's open.
-2. Open your DefaultEngine.ini config file located at project_root/Config/DefaultEngine.ini
-3. Find the section with the heading 
-```[/Script/IOSRuntimeSettings.IOSRuntimeSettings]```
-4. Add this line:
-```bEnableRemoteNotificationsSupport=True```
+  ### If your Unreal Engine is built from the Github source:
+  1. Open project settings (Edit > Project Settings)
+  2. Under Platforms > iOS, under the "Online" section, enable "Enable Remote Notifications Support".
+  ### If your Unreal Engine is NOT built from the Github source:
+  1. Close the Unreal editor if it's open.
+  2. Open your DefaultEngine.ini config file located at project_root/Config/DefaultEngine.ini
+  3. Find the section with the heading 
+  ```[/Script/IOSRuntimeSettings.IOSRuntimeSettings]```
+  4. Add this line:
+  ```bEnableRemoteNotificationsSupport=True```
 </details>
 
 ## How to Use

@@ -8,6 +8,13 @@ ByteBrew Unreal Engine SDK
 3. Restart your Unreal project to rebuild the plugin.
 4. Go to Edit > Plugins and make sure Other > ByteBrewSDK is enabled.
 
+## Extra steps for enabling push notifications on iOS
+1. Open your DefaultEngine.ini config file located at project_root/Config/DefaultEngine.ini
+2. Find the section with the heading 
+```[/Script/IOSRuntimeSettings.IOSRuntimeSettings]```
+3. Add this line:
+```bEnableRemoteNotificationsSupport=True```
+
 ## How to Use
 
 You should now be able to access the ByteBrew category when creating blueprints.

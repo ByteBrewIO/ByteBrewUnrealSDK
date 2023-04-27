@@ -28,7 +28,7 @@ ByteBrew Unreal Engine SDK
 
 ### Additional steps for C++ calls
 
-1. Open your projecct's Build.cs file located at project_root/Source/Project_Name/Project_Name.Build.cs.
+1. Open your project's Build.cs file located at project_root/Source/Project_Name/Project_Name.Build.cs.
 2. Add "ByteBrewSDK" to PublicDependencyModuleNames. It should look something like this:
 
 ```PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "ByteBrewSDK" });```

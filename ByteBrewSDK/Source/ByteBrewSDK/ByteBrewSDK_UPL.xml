@@ -1,54 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--GearVR plugin additions-->
 <root xmlns:android="http://schemas.android.com/apk/res/android">
-	<trace enable="true"/>
+	<trace enable="true" />
 	<init>
-		<log text="ByteBrewSDK init"/>
+		<log text="ByteBrewSDK init" />
 	</init>
 
 	<gradleCopies>
 		<!-- Copy the generated resource file to be packaged -->
-		<copyFile 
-			src="$S(PluginDir)/../ThirdParty/Android/bytebrewlibrary-native.aar" 
-			dst="$S(BuildDir)/gradle/app/libs/bytebrewlibrary-native.aar" 
+		<copyFile
+			src="$S(PluginDir)/../ThirdParty/Android/bytebrewlibrary-native.aar"
+			dst="$S(BuildDir)/gradle/app/libs/bytebrewlibrary-native.aar"
 		/>
 		<!-- Copy the ByteBrewWrapper.java file to the appropriate location -->
-		<copyFile 
-        	src="$S(PluginDir)/Private/Java/ByteBrewWrapper.java"
-        	dst="$S(BuildDir)/gradle/app/src/main/java/com/bytebrew/unrealsdk/ByteBrewWrapper.java"
-    	/>
+		<copyFile
+			src="$S(PluginDir)/Private/Java/ByteBrewWrapper.java"
+			dst="$S(BuildDir)/gradle/app/src/main/java/com/bytebrew/unrealsdk/ByteBrewWrapper.java"
+		/>
 	</gradleCopies>
 
 	<buildGradleAdditions>
 		<insert>
-			<![CDATA[
-        repositories {    
-            jcenter()
-            flatDir {
-                dirs 'libs'
-            }
+        <![CDATA[
+    repositories {    
+        jcenter()
+        flatDir {
+            dirs 'libs'
         }
+    }
 
-        dependencies {
-            implementation (name: 'bytebrewlibrary-native', ext: 'aar')
-			implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-			implementation 'com.google.firebase:firebase-messaging:23.0.0'
-            implementation 'com.android.installreferrer:installreferrer:2.2'
-        }
+    dependencies {
+        implementation (name: 'bytebrewlibrary-native', ext: 'aar')
+		implementation 'com.google.android.gms:play-services-base:18.0.0'
+		implementation 'com.google.android.gms:play-services-basement:18.0.0'
+        implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+        implementation 'com.google.firebase:firebase-messaging:23.0.0'
+        implementation 'com.android.installreferrer:installreferrer:2.2'
+		implementation 'com.google.android.gms:play-services-games:21.0.0'
+    }
 
-        android {
-            compileOptions {
-                sourceCompatibility JavaVersion.VERSION_1_8
-                targetCompatibility JavaVersion.VERSION_1_8
-            }
-            packagingOptions {
-                exclude 'META-INF/NOTICE'
-                exclude 'META-INF/LICENSE'
-            }
-        
+    android {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
         }
-        ]]>
-		</insert>
+        packagingOptions {
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/LICENSE'
+        }
+    
+    }
+    ]]>
+    </insert>
 	</buildGradleAdditions>
 
 	<!-- optional additions to the GameActivity imports in GameActivity.java -->

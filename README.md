@@ -8,7 +8,8 @@ ByteBrew Unreal Engine SDK
 3. Restart your Unreal project to rebuild the plugin.
 4. Go to Edit > Plugins and make sure Other > ByteBrewSDK is enabled.
 
-## Extra steps for enabling push notifications on iOS
+<details>
+  <summary>Extra steps for enabling push notifications on iOS</summary>
 ### If your Unreal Engine is built from the Github source:
 1. Open project settings (Edit > Project Settings)
 2. Under Platforms > iOS, under the "Online" section, enable "Enable Remote Notifications Support".
@@ -19,6 +20,7 @@ ByteBrew Unreal Engine SDK
 ```[/Script/IOSRuntimeSettings.IOSRuntimeSettings]```
 4. Add this line:
 ```bEnableRemoteNotificationsSupport=True```
+</details>
 
 ## How to Use
 

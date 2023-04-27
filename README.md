@@ -8,7 +8,7 @@ ByteBrew Unreal Engine SDK
 3. Restart your Unreal project to rebuild the plugin.
 4. Go to Edit > Plugins and make sure Other > ByteBrewSDK is enabled.
 
-##Extra steps for enabling push notifications on iOS
+## Extra steps for enabling push notifications on iOS
 
 ### If your Unreal Engine is built from the Github source:
 

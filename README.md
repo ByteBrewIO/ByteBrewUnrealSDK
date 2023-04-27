@@ -33,8 +33,19 @@ ByteBrew Unreal Engine SDK
 
 ```PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "ByteBrewSDK" });```
 
-3. Add ```#include "ByteBrewSDKInterface.h"``` to the top of your C++ header file.
-4. Call functions from the .cpp file:
+3. Add "Settings" and "Launch" to PrivateIncludePathModuleNames. If it's not there, just add it below PublicDependencyModuleNames and/or PrivateDependencyModuleNames.
+
+```c#
+PrivateIncludePathModuleNames.AddRange(
+	new string[] {
+		"Settings",
+		"Launch",
+	}
+);
+```
+
+4. Add ```#include "ByteBrewSDKInterface.h"``` to the top of your C++ header file.
+5. Call functions from the .cpp file:
 
 ```c++
 // Called when the game starts

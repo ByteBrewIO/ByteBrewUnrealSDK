@@ -31,17 +31,14 @@ ByteBrew Unreal Engine SDK
 1. Open your project's Build.cs file located at project_root/Source/Project_Name/Project_Name.Build.cs.
 2. Add "ByteBrewSDK" to PublicDependencyModuleNames. It should look something like this:
 
-```PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "ByteBrewSDK" });```
+```c#
+PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "ByteBrewSDK" });
+```
 
 3. Add "Settings" and "Launch" to PrivateIncludePathModuleNames. If it's not there, just add it below PublicDependencyModuleNames and/or PrivateDependencyModuleNames.
 
 ```c#
-PrivateIncludePathModuleNames.AddRange(
-     new string[] {
-          "Settings",
-          "Launch",
-     }
-);
+PrivateIncludePathModuleNames.AddRange(new string[] { "Settings", "Launch" });
 ```
 
 4. Add ```#include "ByteBrewSDKInterface.h"``` to the top of your C++ header file.

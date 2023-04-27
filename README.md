@@ -36,7 +36,7 @@ ByteBrew Unreal Engine SDK
 3. Add ```#include "ByteBrewSDKInterface.h"``` to the top of your C++ header file.
 4. Call functions from the .cpp file:
 
-```
+```c++
 // Called when the game starts
 void UByteBrewSDKCallsTest::BeginPlay()
 {

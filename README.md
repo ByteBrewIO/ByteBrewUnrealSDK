@@ -92,6 +92,8 @@ void UByteBrewSDKCallsTest::BeginPlay()
 	UByteBrewSDKInterface::TrackAdEvent(EByteBrewAdType::Interstitial, TEXT("ad_location"));
 	UByteBrewSDKInterface::TrackAdEventWithAdID(EByteBrewAdType::Reward, TEXT("ad_location"), TEXT("ad_id"));
 	UByteBrewSDKInterface::TrackAdEventWithAdIDAndProvider(EByteBrewAdType::Banner, TEXT("ad_location"), TEXT("ad_id"), TEXT("ad_provider"));
+	UByteBrewSDKInterface::TrackAdEventWithRevenue(EByteBrewAdType::Reward, TEXT("ad_provider"), TEXT("ad_unit_name"), 1.2345f);
+	UByteBrewSDKInterface::TrackAdEventWithAdLocationRevenue(EByteBrewAdType::Reward, TEXT("ad_provider"), TEXT("ad_unit_name"), TEXT("ad_location"), 1.2345f);
 
 	UByteBrewSDKInterface::TrackInAppPurchaseEvent(TEXT("store"), TEXT("currency"), 19.99f, TEXT("item_id"), TEXT("category"));
 	
@@ -134,6 +136,7 @@ Here's a list of available blueprint functions and implementation examples:
 <img width="425" alt="image" src="https://user-images.githubusercontent.com/29225093/234193897-2c51bf23-c865-49ad-8fa6-7c07c33fcc78.png">
 <img width="502" alt="image" src="https://user-images.githubusercontent.com/29225093/234193926-34d6692d-ef37-4285-a142-0a25bafedbb4.png">
 <img width="506" alt="image" src="https://user-images.githubusercontent.com/29225093/234193971-872bb82b-009e-46e6-8434-3c32f704e5b6.png">
+<img width="553" alt="image" src="https://github.com/ByteBrewIO/ByteBrewUnrealSDK/assets/29225093/f589cee0-8368-45e3-94b5-3a4d929b7606">
 <img width="488" alt="image" src="https://user-images.githubusercontent.com/29225093/234194037-797226d7-4973-45b3-b74f-c35a7ffc0a83.png">
 <img width="596" alt="image" src="https://user-images.githubusercontent.com/29225093/234194076-c46c8f5f-c5c4-42bf-b3e3-04305ae75d05.png">
 <img width="497" alt="image" src="https://user-images.githubusercontent.com/29225093/234194152-5f846e69-045e-49fb-883b-70abfd2e14c4.png">

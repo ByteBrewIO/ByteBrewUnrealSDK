@@ -100,6 +100,18 @@ public class ByteBrewWrapper {
         ByteBrew.TrackAdEvent(type, adLocation, adID, adProvider);
     }
 
+    public static void TrackAdEventWithRevenue(String placementType, String adProvider, String adUnitName,
+            double revenue) {
+        ByteBrewAdType type = ByteBrewAdType.valueOf(placementType);
+        ByteBrew.TrackAdEvent(type, adProvider, adUnitName, revenue);
+    }
+
+    public static void TrackAdEventWithAdLocationRevenue(String placementType, String adProvider, String adUnitName,
+            String adLocation, double revenue) {
+        ByteBrewAdType type = ByteBrewAdType.valueOf(placementType);
+        ByteBrew.TrackAdEvent(type, adProvider, adUnitName, adLocation, revenue);
+    }
+
     public static void TrackInAppPurchaseEvent(String store, String currency, float amount, String itemID,
             String category) {
         ByteBrew.TrackInAppPurchaseEvent(store, currency, amount, itemID, category);

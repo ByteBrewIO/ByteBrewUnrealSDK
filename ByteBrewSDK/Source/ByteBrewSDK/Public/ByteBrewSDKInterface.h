@@ -81,6 +81,12 @@ public:
     static void TrackAdEventWithAdIDAndProvider(EByteBrewAdType adType, FString adLocation, FString adID, FString adProvider);
 
     UFUNCTION(BlueprintCallable, Category = "ByteBrew")
+    static void TrackAdEventWithRevenue(EByteBrewAdType adType, FString adProvider, FString adUnitName, float revenue);
+
+    UFUNCTION(BlueprintCallable, Category = "ByteBrew")
+    static void TrackAdEventWithAdLocationRevenue(EByteBrewAdType adType, FString adProvider, FString adUnitName, FString adLocation, float revenue);
+
+    UFUNCTION(BlueprintCallable, Category = "ByteBrew")
     static void TrackInAppPurchaseEvent(FString store, FString currency, float amount, FString itemID, FString category);
 
     UFUNCTION(BlueprintCallable, Category = "ByteBrew")

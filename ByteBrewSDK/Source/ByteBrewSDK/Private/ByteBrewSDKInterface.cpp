@@ -352,6 +352,62 @@ void UByteBrewSDKInterface::TrackAdEventWithAdIDAndProvider(EByteBrewAdType adTy
 #endif
 }
 
+void UByteBrewSDKInterface::TrackAdEventWithRevenue(EByteBrewAdType adType, FString adProvider, FString adUnitName, float revenue)
+{
+#if PLATFORM_ANDROID
+    if (JNIEnv *Env = FAndroidApplication::GetJavaEnv())
+    {
+        jclass Class = FAndroidApplication::FindJavaClass("com/bytebrew/unrealsdk/ByteBrewWrapper");
+        jmethodID Method = FJavaWrapper::FindStaticMethod(Env, Class, "TrackAdEventWithRevenue",
+                                                          "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;D)V", false);
+        jstring AdType = Env->NewStringUTF(TCHAR_TO_UTF8(*GetAdTypeAsString(adType)));
+        jstring AdProvider = Env->NewStringUTF(TCHAR_TO_UTF8(*adProvider));
+        jstring AdUnitName = Env->NewStringUTF(TCHAR_TO_UTF8(*adUnitName));
+        jdouble Revenue = static_cast<jdouble>(revenue);
+        Env->CallStaticVoidMethod(Class, Method, AdType, AdProvider, AdUnitName, Revenue);
+        Env->DeleteLocalRef(AdType);
+        Env->DeleteLocalRef(AdProvider);
+        Env->DeleteLocalRef(AdUnitName);
+        Env->DeleteLocalRef(Class);
+    }
+#elif PLATFORM_IOS
+    [ByteBrewNativeiOSPlugin NewTrackedAdEvent:GetAdTypeAsString(adType).GetNSString()
+                                    AdProvider:adProvider.GetNSString()
+                                    AdUnitName:adUnitName.GetNSString()
+                                       Revenue:revenue];
+#endif
+}
+
+void UByteBrewSDKInterface::TrackAdEventWithAdLocationRevenue(EByteBrewAdType adType, FString adProvider, FString adUnitName, FString adLocation, float revenue)
+{
+#if PLATFORM_ANDROID
+    if (JNIEnv *Env = FAndroidApplication::GetJavaEnv())
+    {
+        jclass Class = FAndroidApplication::FindJavaClass("com/bytebrew/unrealsdk/ByteBrewWrapper");
+        jmethodID Method =
+            FJavaWrapper::FindStaticMethod(Env, Class, "TrackAdEventWithAdLocationRevenue",
+                                           "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;D)V", false);
+        jstring AdType = Env->NewStringUTF(TCHAR_TO_UTF8(*GetAdTypeAsString(adType)));
+        jstring AdProvider = Env->NewStringUTF(TCHAR_TO_UTF8(*adProvider));
+        jstring AdUnitName = Env->NewStringUTF(TCHAR_TO_UTF8(*adUnitName));
+        jstring AdLocation = Env->NewStringUTF(TCHAR_TO_UTF8(*adLocation));
+        jdouble Revenue = static_cast<jdouble>(revenue);
+        Env->CallStaticVoidMethod(Class, Method, AdType, AdProvider, AdUnitName, AdLocation, Revenue);
+        Env->DeleteLocalRef(AdType);
+        Env->DeleteLocalRef(AdProvider);
+        Env->DeleteLocalRef(AdUnitName);
+        Env->DeleteLocalRef(AdLocation);
+        Env->DeleteLocalRef(Class);
+    }
+#elif PLATFORM_IOS
+    [ByteBrewNativeiOSPlugin NewTrackedAdEvent:GetAdTypeAsString(adType).GetNSString()
+                                    AdProvider:adProvider.GetNSString()
+                                    AdUnitName:adUnitName.GetNSString()
+                                    AdLocation:adLocation.GetNSString()
+                                       Revenue:revenue];
+#endif
+}
+
 void UByteBrewSDKInterface::TrackInAppPurchaseEvent(FString store, FString currency, float amount, FString itemID, FString category)
 {
 #if PLATFORM_ANDROID

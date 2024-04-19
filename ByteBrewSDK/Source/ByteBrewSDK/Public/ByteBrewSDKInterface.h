@@ -6,7 +6,7 @@
 #include "Android/AndroidJNI.h"
 #include "Android/AndroidApplication.h"
 #elif PLATFORM_IOS
-#include "ByteBrewNativeiOSPlugin.h"
+#import <ByteBrewNativeiOSPlugin/ByteBrewNativeiOSPlugin.h>
 #endif
 #include "ByteBrewSDKInterface.generated.h"
 

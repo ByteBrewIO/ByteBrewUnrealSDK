@@ -79,10 +79,9 @@ public class ByteBrewSDK : ModuleRules
         }
         else if (Target.Platform == UnrealTargetPlatform.IOS)
         {
-
+            
             string iosPath = Path.Combine(ModuleDirectory, "Source/../../ThirdParty/IOS");
-            PublicIncludePaths.Add(iosPath);
-            PublicAdditionalLibraries.Add(Path.Combine(iosPath, "libByteBrewNativeiOSPlugin.a"));
+            PublicAdditionalFrameworks.Add(new Framework("ByteBrewNativeiOSPlugin", Path.Combine(iosPath, "ByteBrewNativeiOSPlugin.embeddedframework.zip")));
 
         }
 
